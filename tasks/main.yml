@@ -52,7 +52,7 @@
     state: link
 
 - set_fact:
-    spark_profile: "{{ lookup('tempalte', 'templates/spark.env.j2')}}"
+    spark_profile: "{{ lookup('ansible.builtin.template', 'templates/spark.env.j2')}}"
 
 - blockinfile:
     dest: '~/.profile'
