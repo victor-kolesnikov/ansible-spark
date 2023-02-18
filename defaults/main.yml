@@ -8,9 +8,6 @@ spark_timeout: 10
 
 spark_is_master: false
 
-spark_owner: spark
-spark_group: spark
-
 ## SPARK_HOME and PATH envs would be updated with this installation.
 ## To set other Spark related env, use the dictionary below
 ## spark_envs:
