@@ -43,7 +43,7 @@
     state: link
 
 - set_fact:
-  spark_profile: "{{ lookup('tempalte', tempaltes/spark.env.j2)}}"
+    spark_profile: "{{ lookup('tempalte', tempaltes/spark.env.j2)}}"
 
 - blockinfile:
     dest: '~/.profile'
