@@ -61,8 +61,8 @@
     become: true
     become_user: root
     ansible.builtin.copy:
-      src: '{{ spark_target_dir }}/conf/spark-env.sh.template'
-      dest: '{{ spark_target_dir }}/conf/spark-env.sh'
+      src: '{{ spark_link_dir }}/conf/spark-env.sh.template'
+      dest: '{{ spark_link_dir }}/conf/spark-env.sh'
       follow: yes
   - name: env/workers
     become: true
