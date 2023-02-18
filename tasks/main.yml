@@ -58,10 +58,16 @@
 - when: spark_is_master
   block:
   - name: env/spark-env.sh
+    become: true
+    become_user: root
     ansible.builtin.copy:
       src: '{{ spark_target_dir }}/conf/spark-env.sh.template'
       dest: '{{ spark_target_dir }}/conf/spark-env.sh'
+      follow: yes
   - name: env/workers
+    become: true
+    become_user: root
     ansible.builtin.copy:
       src: '{{ spark_target_dir }}/conf/workers.template'
       dest: '{{ spark_target_dir }}/conf/workers'
+      follow: yes
