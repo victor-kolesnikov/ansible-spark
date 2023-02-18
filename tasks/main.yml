@@ -83,3 +83,7 @@
       mode: u+rw,g+rw,o+rw
       force: yes
       remote_src: true
+  - blockinfile:
+      dest: '{{ spark_target_dir }}/conf/workers'
+      content: 'hostvars['workers']'
+      state: present
