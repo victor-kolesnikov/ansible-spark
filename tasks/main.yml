@@ -1,9 +1,16 @@
 ---
 - include_role:
     name: andrewrothstein.unarchive-deps
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    become: true
+    become_user: root
+    path: '{{ spark_parent_dir }}'
+    state: directory
+    mode: u+rwx,g+rwx,o+rwx
 - name: check for spark installation
   become: true
-  become_user: '{{spark_user}}'
+  become_user: '{{ spark_user }}'
   stat:
     path: '{{ spark_target_dir }}'
   changed_when: false
@@ -12,7 +19,7 @@
   block:
     - name: downloading spark from {{ spark_url }}
       become: true
-      become_user: '{{spark_user}}'
+      become_user: '{{ spark_user }}'
       get_url:
         url: '{{ spark_url }}'
         dest: '{{ spark_tmp_tgz }}'
@@ -21,7 +28,7 @@
         timeout: '{{ spark_timeout }}'
     - name: unarchive {{ spark_tmp_tgz }}
       become: true
-      become_user: '{{spark_user}}'
+      become_user: '{{ spark_user }}'
       unarchive:
         remote_src: true
         dest: '{{ spark_parent_dir }}'
@@ -30,13 +37,13 @@
   always:
     - name: rm {{ spark_tmp_tgz }}
       become: true
-      become_user: '{{spark_user}}'
+      become_user: '{{ spark_user }}'
       file:
         path: '{{ spark_tmp_tgz }}'
         state: absent
 - name: linking {{ spark_link_dir }} to {{ spark_target_dir }}
   become: true
-  become_user: '{{spark_user}}'
+  become_user: '{{ spark_user }}'
   file:
     src: '{{ spark_target_dir }}'
     dest: '{{ spark_link_dir }}'
