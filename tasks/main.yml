@@ -85,5 +85,5 @@
       remote_src: true
   - blockinfile:
       dest: '{{ spark_target_dir }}/conf/workers'
-      content: 'hostvars['workers']'
+      content: '{{ spark_workers }}'
       state: present
