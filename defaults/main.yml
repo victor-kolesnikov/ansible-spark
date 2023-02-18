@@ -3,8 +3,13 @@ spark_ver: 3.3.2
 spark_hadoop_ver: hadoop3
 spark_mirror_url: https://archive.apache.org/dist/spark
 
-spark_parent_dir: /usr/local
+spark_parent_dir: /apps
 spark_timeout: 10
+
+spark_is_master: false
+
+spark_owner: spark
+spark_group: spark
 
 ## SPARK_HOME and PATH envs would be updated with this installation.
 ## To set other Spark related env, use the dictionary below
