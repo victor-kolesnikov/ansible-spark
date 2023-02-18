@@ -63,7 +63,7 @@
   block:
   - name: env/spark-env.sh
     become: true
-    become_user: '{{spark_user}}'
+    become_user: '{{spark_owner}}'
     ansible.builtin.copy:
       src: '{{ spark_target_dir }}/conf/spark-env.sh.template'
       dest: '{{ spark_target_dir }}/conf/spark-env.sh'
@@ -74,12 +74,12 @@
       remote_src: true
   - name: env/workers
     become: true
-    become_user: '{{spark_user}}'
+    become_user: '{{spark_owner}}'
     ansible.builtin.copy:
       src: '{{ spark_target_dir }}/conf/workers.template'
       dest: '{{ spark_target_dir }}/conf/workers'
       owner: '{{ spark_owner }}'
-      group: '{{ spark_gropu }}'
+      group: '{{ spark_group }}'
       mode: u+rw,g+rw,o+rw
       force: yes
       remote_src: true
