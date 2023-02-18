@@ -1,10 +1,6 @@
 ---
 - include_role:
     name: andrewrothstein.unarchive-deps
-- include_role:
-    name: andrewrothstein.temurin
-  vars:
-    openjdk_app: jdk
 - name: check for spark installation
   become: true
   stat:
