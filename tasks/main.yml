@@ -67,6 +67,9 @@
     ansible.builtin.copy:
       src: '{{ spark_target_dir }}/conf/spark-env.sh.template'
       dest: '{{ spark_target_dir }}/conf/spark-env.sh'
+      owner: '{{ spark_user }}'
+      group: '{{ spark_owner }}'
+      mode: u+rwx,g+rwx,o+rw
       force: yes
       remote_src: true
   - name: env/workers
@@ -75,5 +78,8 @@
     ansible.builtin.copy:
       src: '{{ spark_target_dir }}/conf/workers.template'
       dest: '{{ spark_target_dir }}/conf/workers'
+      owner: '{{ spark_user }}'
+      group: '{{ spark_owner }}'
+      mode: u+rw,g+rw,o+rw
       force: yes
       remote_src: true
