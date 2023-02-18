@@ -54,3 +54,14 @@
     src: '{{ item.f }}.j2'
     dest: '{{ item.d }}/{{ item.f }}'
     mode: '{{ item.m }}'
+
+- when: spark.is_master
+  block:
+  - name: env/spark-env.sh
+    ansible.builtin.copy:
+      src: '{{ spark_target_dir }}'/conf/spark-env.sh.template
+      dest: '{{ spark_target_dir }}'/conf/spark-env.sh
+  - name: env/workers
+    ansible.builtin.copy:
+      src: '{{ spark_target_dir }}'/conf/workers.template
+      dest: '{{ spark_target_dir }}'/conf/workers
