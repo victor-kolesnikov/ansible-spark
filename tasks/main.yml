@@ -14,8 +14,8 @@
   become_user: '{{ spark_user }}'
   stat:
     path: '{{ spark_target_dir }}'
-    changed_when: false
-    register: spark_binary
+  changed_when: false
+  register: spark_binary
 
 - when: not spark_binary.stat.exists
   block:
