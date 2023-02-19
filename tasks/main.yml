@@ -53,7 +53,12 @@
 
 - set_fact:
     spark_profile: "{{ lookup('ansible.builtin.template', 'templates/spark.env.j2')}}"
-
+    worker_hosts: "{{ groups|
+                      dict2items|
+                      selectattr('key', 'match', 'workers')|
+                      map(attribute='value')|
+                      list|
+                      flatten }}"
 - blockinfile:
     dest: '~/.profile'
     content: '{{ spark_profile }}'
@@ -85,6 +90,6 @@
       remote_src: true
   - blockinfile:
       dest: '{{ spark_target_dir }}/conf/workers'
-      content: '{{ item.ansible_host }}'
+      content: '{{ item }}'
       state: present
-    with_items: '{{ spark_workers }}'
+    with_items: '{{ worker_hosts }}'
