@@ -85,6 +85,6 @@
       remote_src: true
   - blockinfile:
       dest: '{{ spark_target_dir }}/conf/workers'
-      content: '{{ item }}'
+      content: '{{ item.ansible_host }}'
       state: present
     with_items: '{{ spark_workers }}'
