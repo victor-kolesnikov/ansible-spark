@@ -88,7 +88,8 @@
       mode: u+rw,g+rw,o+rw
       force: yes
       remote_src: true
-  - blockinfile:
+  - lineinfile:
       dest: '{{ spark_target_dir }}/conf/workers'
-      content: '{{ worker_hosts }}'
+      content: '{{ item }}'
       state: present
+    with_items: '{{ worker_hosts }}'
