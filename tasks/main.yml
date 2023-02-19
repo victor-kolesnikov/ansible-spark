@@ -87,4 +87,4 @@
       dest: '{{ spark_target_dir }}/conf/workers'
       content: '{{ item }}'
       state: present
-    with_items: {{ spark_workers }}
+    with_items: '{{ spark_workers }}'
